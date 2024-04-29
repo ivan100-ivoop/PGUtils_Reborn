@@ -98,23 +98,6 @@
             <artifactId>adventure-api</artifactId>
             <version>4.14.0</version>
         </dependency>
-
-        <dependency>
-        <groupId>com.comphenix.protocol</groupId>
-        <artifactId>ProtocolLib</artifactId>
-        <version>5.2.0</version>
-        <scope>system</scope>
-        <systemPath>C:/Users/ASUS/.m2/repository/com/comphenix/protocol/ProtocolLib/5.2.0/ProtocolLib-5.2.0.jar</systemPath>
-    </dependency>
-
-        <dependency>
-            <groupId>org.github</groupId>
-            <artifactId>ICore</artifactId>
-            <version>4.0</version>
-            <scope>system</scope>
-            <systemPath>C:/Users/ASUS/.m2/repository/org/github/ICore/4.0/ICore-4.0.jar</systemPath>
-        </dependency>
-
         <dependency>
             <groupId>com.github.Realizedd</groupId>
             <artifactId>TokenManager</artifactId>
