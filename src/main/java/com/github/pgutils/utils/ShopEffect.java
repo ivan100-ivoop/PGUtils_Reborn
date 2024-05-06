@@ -3,8 +3,10 @@ package com.github.pgutils.utils;
 import com.github.pgutils.PGUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
+import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -15,37 +17,18 @@ import java.util.UUID;
 
 public class ShopEffect {
     private PGUtils pl = PGUtils.instance;
-    private Map<String, ConfigurationSection> playerShop = new HashMap<>();
-    private Map<String, ConfigurationSection> tntShop = new HashMap<>();
     private Map<Player, ClickMenu> players = new HashMap<>();
-    private Map<Player, ClickMenu> tntPlayers = new HashMap<>();
     private PlayerEffects effects;
 
     public ShopEffect(
-            Map<String, ConfigurationSection> playerShop,
-            Map<String, ConfigurationSection> tntShop,
-            Map<Player, ClickMenu> players,
-            Map<Player, ClickMenu> tntPlayers
+            Map<Player, ClickMenu> players
     ){
-        this.tntShop = tntShop;
-        this.playerShop = playerShop;
         this.players = players;
-        this.tntPlayers = tntPlayers;
         this.effects = new PlayerEffects();
     }
 
-    public boolean applyEffect(String ID, Player buyer){
-        ConfigurationSection item = getConfiguration(ID);
-        boolean isTNTPlayer = this.tntPlayers.containsKey(buyer);
+    public boolean applyEffect(ConfigurationSection item, Player buyer){
         if(item == null) return false;
-
-        if(item.getBoolean("onetime", false)) {
-            if(this.tntShop.containsKey(ID)){
-                this.tntShop.remove(ID);
-            } else {
-                this.playerShop.remove(ID);
-            }
-        }
 
         if(item.getBoolean("freeze", false)){
             for (Map.Entry<Player, ClickMenu> entity : this.players.entrySet()) {
@@ -62,10 +45,6 @@ public class ShopEffect {
             }
         }
         return true;
-    }
-
-    private ConfigurationSection getConfiguration(String id) {
-        return (this.tntShop.containsKey(id) ? this.tntShop.get(id) : this.playerShop.containsKey(id) ? this.playerShop.get(id) : null);
     }
 
     public static class PlayerEffects {

@@ -109,14 +109,8 @@ public class ClickMenu implements Listener {
             Player p = (Player) event.getWhoClicked();
             if(event.getSlot() >= 0) {
                 Row row = getRowFromSlot(event.getSlot());
-                if(!itemID.isEmpty() && itemID.containsKey(event.getCurrentItem())){
-                    if (!click.click(p, this, row, event.getSlot() - row.getRow() * 9, itemID.get(event.getCurrentItem()))){
-                        close(p);
-                    }
-                } else {
-                    if (!click.click(p, this, row, event.getSlot() - row.getRow() * 9, event.getCurrentItem())){
-                        close(p);
-                    }
+                if (!click.click(p, this, row, event.getSlot() - row.getRow() * 9, itemID.get(event.getCurrentItem()))){
+                    close(p);
                 }
             }
         }
@@ -141,8 +135,19 @@ public class ClickMenu implements Listener {
         return new Row(row, items);
     }
 
+    public void closeAll() {
+        viewing.clear();
+    }
+
+    public void removeBtn(ItemStack itemsStack) {
+        for (int id = 0; id<this.items.length; id++){
+            if(this.items[id].isSimilar(itemsStack)){
+                this.items[id] = new ItemStack(Material.AIR);
+            }
+        }
+    }
+
     public interface onClick {
-        public abstract boolean click(Player clicker, ClickMenu menu, Row row, int slot, ItemStack item);
         public abstract boolean click(Player clicker, ClickMenu menu, Row row, int slot, String ID);
     }
 

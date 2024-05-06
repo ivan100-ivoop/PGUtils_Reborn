@@ -10,10 +10,7 @@ import com.github.pgutils.entities.Lobby;
 import com.github.pgutils.entities.PlaySpace;
 import com.github.pgutils.entities.games.KOTHArena;
 import com.github.pgutils.entities.games.TNTRArena;
-import com.github.pgutils.entities.service.LobbyService;
-import com.github.pgutils.entities.service.PortalService;
-import com.github.pgutils.entities.service.RewardService;
-import com.github.pgutils.entities.service.TNTRServices;
+import com.github.pgutils.entities.service.*;
 import com.github.pgutils.hooks.PGLobbyHook;
 import com.github.pgutils.selections.PlayerLobbySelector;
 import com.github.pgutils.selections.PlayerPlaySpaceSelector;
@@ -21,8 +18,6 @@ import com.github.pgutils.utils.Messages;
 import com.github.pgutils.utils.updaters.LobbyUpdater;
 import com.github.pgutils.utils.updaters.LowPriorityUpdater;
 import com.github.pgutils.utils.updaters.ParticleUpdater;
-import me.realized.tokenmanager.TokenManagerPlugin;
-import me.realized.tokenmanager.api.TokenManager;
 import org.bukkit.Bukkit;
 import org.github.icore.ICoreAPI;
 import org.github.icore.mysql.DatabaseAPI;
@@ -128,7 +123,7 @@ public class PGUtilsLoader {
         PortalService.getAllPortal();
         RewardService.getAllRewards();
         TNTRServices.getAllTNTRun();
-        //KOTHArenaUtils.loadArenas();
+        KothService.getAllKoth();
     }
 
     private void registerEvents(){

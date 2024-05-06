@@ -1,0 +1,1 @@
+mvn install:install-file -Dfile=D:\Projects\source\repos\PGUtils\lib\ICore-4.0.jar -DgroupId=org.github -DartifactId=ICore -Dversion=4.0 -Dpackaging=jar

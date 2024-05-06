@@ -69,10 +69,6 @@
             <id>lukasalt-repo</id>
             <url>https://repo.lukasa.lt/repository/maven-public/</url>
         </repository>
-        <repository>
-            <id>my-repo</id>
-            <url>https://freedown.store/my-repo/</url>
-        </repository>
 
         <repository>
             <id>jitpack-repo</id>
@@ -103,28 +99,15 @@
             <groupId>com.comphenix.protocol</groupId>
             <artifactId>ProtocolLib</artifactId>
             <version>5.2.0</version>
-            <type>jar</type>
-            <scope>provided</scope>
+            <systemPath>${project.basedir}/lib/ProtocolLib-5.2.0.jar</systemPath>
+            <scope>system</scope>
         </dependency>
 
         <dependency>
             <groupId>org.github</groupId>
             <artifactId>ICore</artifactId>
             <version>4.0</version>
-            <type>jar</type>
             <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.github.Realizedd</groupId>
-            <artifactId>TokenManager</artifactId>
-            <version>3.2.4</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>*</groupId>
-                    <artifactId>*</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
     </dependencies>

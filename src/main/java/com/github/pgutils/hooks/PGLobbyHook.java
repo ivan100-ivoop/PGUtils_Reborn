@@ -75,6 +75,7 @@ public class PGLobbyHook implements Listener {
 	@EventHandler (priority = EventPriority.HIGHEST)
 	public void onItemClick(PlayerInteractEvent event){
 		if (event.getItem() == null) return;
+		if (event.getPlayer() == null) return;
 		if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) return;
 		Player player = event.getPlayer();
 		Optional<PlaySpace> _l = Lobby.lobbies.stream().map(Lobby::getCurrentPlaySpace).filter(game-> game.getPlayers().contains(player)).findFirst();
