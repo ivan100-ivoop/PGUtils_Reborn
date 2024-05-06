@@ -67,6 +67,7 @@ public class Shop implements Listener {
                         }
 
                         if(effects.applyEffect(shopId, clicker)){
+                        clicker.sendMessage(Messages.messageWithPrefix("success.effectgive" , "&r&cApplied effect on you!"));
                             if(shopId.getBoolean("onetime", false)) {
                                 playerShop.remove(ID);
                                 for (Map.Entry<Player, ClickMenu> menuItem : players.entrySet()){

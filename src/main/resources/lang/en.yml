@@ -3,5 +3,8 @@
 #
 
 prefix: '&7[&e&lPGUtils&7] '
+success:
+  effectgive: " &r&cApplied effect on you!"
+  effectclear: " "
 
 

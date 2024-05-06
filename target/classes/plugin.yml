@@ -11,10 +11,19 @@ depend: [ProtocolLib]
 commands:
   pg:
     description: Reload the configuration.
-    permission: pgutils.reload
-    usage: "Usage: /pg <reload, setlobby, setpotal, tool, leave, chest>"
+    permission: pgutils.usage
+    usage: "Usage: /pg <subcommand>"
 
 permissions:
+  pgutils.usage:
+    permission-message: You do not have permission to use this command.
+    default: op
+  pgutils.join:
+    permission-message: You do not have permission to use this command.
+    default: op
+  pgutils.leave:
+    permission-message: You do not have permission to use this command.
+    default: op
   pgutils.reload:
     permission-message: You do not have permission to use this command.
     default: op

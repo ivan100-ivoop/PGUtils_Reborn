@@ -29,6 +29,7 @@ C:\Users\ASUS\PGUtils_Reborn\src\main\java\com\github\pgutils\entities\service\L
 C:\Users\ASUS\PGUtils_Reborn\src\main\java\com\github\pgutils\particles\variants\FullCircleParticle.java
 C:\Users\ASUS\PGUtils_Reborn\src\main\java\com\github\pgutils\customitems\effects\GodlessEffect.java
 C:\Users\ASUS\PGUtils_Reborn\src\main\java\com\github\pgutils\entities\games\KOTHArena.java
+C:\Users\ASUS\PGUtils_Reborn\src\main\java\com\github\pgutils\utils\db\KothGame.java
 C:\Users\ASUS\PGUtils_Reborn\src\main\java\com\github\pgutils\utils\db\TNTRun.java
 C:\Users\ASUS\PGUtils_Reborn\src\main\java\com\github\pgutils\utils\LobbyMenu.java
 C:\Users\ASUS\PGUtils_Reborn\src\main\java\com\github\pgutils\commands\PGUtilsCommand.java
@@ -36,6 +37,7 @@ C:\Users\ASUS\PGUtils_Reborn\src\main\java\com\github\pgutils\utils\ActionBarUti
 C:\Users\ASUS\PGUtils_Reborn\src\main\java\com\github\pgutils\customitems\effects\GoldenHarpTargetEffect.java
 C:\Users\ASUS\PGUtils_Reborn\src\main\java\com\github\pgutils\particles\EnhancedParticle.java
 C:\Users\ASUS\PGUtils_Reborn\src\main\java\com\github\pgutils\entities\service\RewardService.java
+C:\Users\ASUS\PGUtils_Reborn\src\main\java\com\github\pgutils\utils\db\location\KothPointsSerialize.java
 C:\Users\ASUS\PGUtils_Reborn\src\main\java\com\github\pgutils\utils\db\location\Deserialize.java
 C:\Users\ASUS\PGUtils_Reborn\src\main\java\com\github\pgutils\particles\variants\SphericalPointParticle.java
 C:\Users\ASUS\PGUtils_Reborn\src\main\java\com\github\pgutils\customitems\CustomEffectUpdater.java
@@ -61,6 +63,7 @@ C:\Users\ASUS\PGUtils_Reborn\src\main\java\com\github\pgutils\utils\db\location\
 C:\Users\ASUS\PGUtils_Reborn\src\main\java\com\github\pgutils\customitems\effects\GoldenHarpGroundEffect.java
 C:\Users\ASUS\PGUtils_Reborn\src\main\java\com\github\pgutils\customitems\effects\LostBombEffect.java
 C:\Users\ASUS\PGUtils_Reborn\src\main\java\com\github\pgutils\enums\GameStatus.java
+C:\Users\ASUS\PGUtils_Reborn\src\main\java\com\github\pgutils\utils\db\location\KothSpawnsDeserialize.java
 C:\Users\ASUS\PGUtils_Reborn\src\main\java\com\github\pgutils\customitems\effects\MiniBeaconHoldSneakEffect.java
 C:\Users\ASUS\PGUtils_Reborn\src\main\java\com\github\pgutils\utils\Keys.java
 C:\Users\ASUS\PGUtils_Reborn\src\main\java\com\github\pgutils\entities\games\tntradditionals\TNTRSpawn.java
@@ -76,6 +79,8 @@ C:\Users\ASUS\PGUtils_Reborn\src\main\java\com\github\pgutils\particles\variants
 C:\Users\ASUS\PGUtils_Reborn\src\main\java\com\github\pgutils\utils\updaters\LobbyUpdater.java
 C:\Users\ASUS\PGUtils_Reborn\src\main\java\com\github\pgutils\commands\all\ChestCommand.java
 C:\Users\ASUS\PGUtils_Reborn\src\main\java\com\github\pgutils\particles\variants\SwirlingParticle.java
+C:\Users\ASUS\PGUtils_Reborn\src\main\java\com\github\pgutils\entities\service\KothService.java
+C:\Users\ASUS\PGUtils_Reborn\src\main\java\com\github\pgutils\utils\db\location\KothPointsDeserialize.java
 C:\Users\ASUS\PGUtils_Reborn\src\main\java\com\github\pgutils\utils\updaters\LowPriorityUpdater.java
 C:\Users\ASUS\PGUtils_Reborn\src\main\java\com\github\pgutils\customitems\CustomItemLibrary.java
 C:\Users\ASUS\PGUtils_Reborn\src\main\java\com\github\pgutils\customitems\effects\CrownOfTheFallenEffect.java
@@ -87,6 +92,7 @@ C:\Users\ASUS\PGUtils_Reborn\src\main\java\com\github\pgutils\entities\PlaySpace
 C:\Users\ASUS\PGUtils_Reborn\src\main\java\com\github\pgutils\hooks\PGLobbyHook.java
 C:\Users\ASUS\PGUtils_Reborn\src\main\java\com\github\pgutils\PGUtilsLoader.java
 C:\Users\ASUS\PGUtils_Reborn\src\main\java\com\github\pgutils\customitems\effects\GoldenHarpCooldownEffect.java
+C:\Users\ASUS\PGUtils_Reborn\src\main\java\com\github\pgutils\utils\db\location\KothSpawnsSerialize.java
 C:\Users\ASUS\PGUtils_Reborn\src\main\java\com\github\pgutils\utils\sb\Team.java
 C:\Users\ASUS\PGUtils_Reborn\src\main\java\com\github\pgutils\customitems\CustomItemRepository.java
 C:\Users\ASUS\PGUtils_Reborn\src\main\java\com\github\pgutils\entities\games\kothadditionals\KOTHSpawn.java

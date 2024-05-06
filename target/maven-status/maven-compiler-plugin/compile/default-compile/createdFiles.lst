@@ -1,5 +1,6 @@
 com\github\pgutils\utils\GeneralUtils.class
 com\github\pgutils\customitems\effects\MiniBeaconHoldSneakEffect.class
+com\github\pgutils\utils\db\KothGame.class
 com\github\pgutils\customitems\effects\DynamicEffect.class
 com\github\pgutils\customitems\effects\PartyEffect.class
 com\github\pgutils\customitems\effects\GoldenHarpCooldownEffect.class
@@ -17,6 +18,7 @@ com\github\pgutils\commands\all\GetToolCommand.class
 com\github\pgutils\PGUtils.class
 com\github\pgutils\utils\ActionBar.class
 com\github\pgutils\entities\games\Shop.class
+com\github\pgutils\entities\service\KothService.class
 com\github\pgutils\customitems\effects\QuantumLTFHoldEffect.class
 com\github\pgutils\utils\updaters\LowPriorityUpdater.class
 com\github\pgutils\utils\db\RespawnSave.class
@@ -27,6 +29,7 @@ com\github\pgutils\entities\games\tntradditionals\TNTRJump$1.class
 com\github\pgutils\commands\all\RandomCommand.class
 com\github\pgutils\PGUtilsLoader.class
 com\github\pgutils\entities\games\kothadditionals\KOTHPoint$2.class
+com\github\pgutils\utils\db\location\KothSpawnsDeserialize.class
 com\github\pgutils\customitems\effects\BlackHoleEffect$1.class
 com\github\pgutils\utils\ActionBarUtils.class
 com\github\pgutils\selections\PlayerLobbySelector.class
@@ -56,6 +59,7 @@ com\github\pgutils\entities\games\KOTHArena.class
 com\github\pgutils\customitems\effects\QuantumLTFArrowEffect$2.class
 com\github\pgutils\entities\games\tntradditionals\TNTRSpawn.class
 com\github\pgutils\utils\updaters\LobbyUpdater.class
+com\github\pgutils\utils\db\location\KothPointsSerialize.class
 com\github\pgutils\commands\all\GameCommand.class
 com\github\pgutils\utils\db\LobbySave.class
 com\github\pgutils\commands\all\CreatePortal.class
@@ -81,6 +85,7 @@ com\github\pgutils\utils\ShopEffect$PlayerEffects.class
 com\github\pgutils\customitems\CustomItemLibrary$2.class
 com\github\pgutils\entities\helpfulutils\ClientboundArmorstand.class
 com\github\pgutils\utils\db\location\Serialize.class
+com\github\pgutils\utils\db\location\KothSpawnsSerialize.class
 com\github\pgutils\customitems\effects\QuantumLTFArrowEffect.class
 com\github\pgutils\utils\PlayerManager.class
 com\github\pgutils\utils\db\location\TNTRSpawnDeserialize.class
@@ -107,6 +112,7 @@ com\github\pgutils\customitems\CustomEffect.class
 com\github\pgutils\entities\games\kothadditionals\KOTHPoint$8.class
 com\github\pgutils\entities\games\kothadditionals\KOTHPointStatus.class
 com\github\pgutils\utils\ShopEffect$PlayerEffects$3.class
+com\github\pgutils\utils\db\location\KothPointsDeserialize.class
 com\github\pgutils\customitems\CustomItemRepository.class
 com\github\pgutils\customitems\effects\BlackHoleEffect.class
 com\github\pgutils\entities\Lobby.class
