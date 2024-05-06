@@ -1,5 +1,6 @@
 package com.github.pgutils;
 
+import com.github.pgutils.entities.service.KothService;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -19,5 +20,6 @@ public final class PGUtils extends JavaPlugin {
     @Override
     public void onDisable() {
         loader.stop();
+        KothService.saveAll();
     }
 }

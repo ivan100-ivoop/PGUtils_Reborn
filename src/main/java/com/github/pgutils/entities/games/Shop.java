@@ -18,10 +18,8 @@ public class Shop implements Listener {
     private String title = GeneralUtils.fixColors(pl.getConfig().getString("shop.title"));
     private List<ConfigurationSection> items = new ArrayList<>();
     private Map<String, ConfigurationSection> playerShop = new HashMap<>();
-    private Map<String, ConfigurationSection> tntShop = new HashMap<>();
 
     private Map<Player, ClickMenu> players = new HashMap<>();
-    private Map<Player, ClickMenu> tntPlayers = new HashMap<>();
     private TNTRArena arena;
     private ShopEffect effects;
 
@@ -33,43 +31,61 @@ public class Shop implements Listener {
         }
 
         this.arena = arena;
-        this.effects = new ShopEffect( playerShop, tntShop, players, tntPlayers);
+        this.effects = new ShopEffect(players);
     }
     public void resetAll(){
-
-        for (Map.Entry<Player, ClickMenu> tnt : tntPlayers.entrySet()){
-            ClickMenu cl =  tnt.getValue();
-            cl.close(tnt.getKey());
-            tntPlayers.remove(tnt.getKey());
-        }
 
         for (Map.Entry<Player, ClickMenu> pls : players.entrySet()){
             ClickMenu cl =  pls.getValue();
             cl.close(pls.getKey());
-            tntPlayers.remove(pls.getKey());
         }
 
     }
 
     public void addPlayer(Player player){
-        ClickMenu shop_1 = getPlayerMenu();
+        ClickMenu shop_1 = getPlayerShop();
         shop_1.setPlayer(player);
-
         player.getInventory().setItem(8, Shop.menuItem());
-
-        if(players.containsKey(player)){
-            players.remove(player);
-            tntPlayers.put(player, shop_1);
-            return;
-        }
-
         players.put(player, shop_1);
     }
 
     public void open(Player player){
-        ClickMenu shop = (players.containsKey(player) ? players.get(player) : (tntPlayers.containsKey(player) ? tntPlayers.get(player) : null));
+        ClickMenu shop = (players.containsKey(player) ? players.get(player) : null);
         if(shop != null){
             shop.open(player);
+            shop.onClick(new ClickMenu.onClick() {
+                @Override
+                public boolean click(Player clicker, ClickMenu menu, ClickMenu.Row row, int slot, String ID) {
+
+                    if(playerShop.containsKey(ID)){
+                        ConfigurationSection shopId = playerShop.get(ID);
+
+                        if(shopId == null) return false;
+
+                        if(shopId.getBoolean("onlyTNT", false)){
+                            if(!clicker.getInventory().contains(Material.TNT)) return false;
+                        }
+
+                        if(effects.applyEffect(shopId, clicker)){
+                            if(shopId.getBoolean("onetime", false)) {
+                                playerShop.remove(ID);
+                                for (Map.Entry<Player, ClickMenu> menuItem : players.entrySet()){
+                                    ClickMenu menus = menuItem.getValue();
+
+                                    ItemStack itemsStack = new ItemStack(Material.valueOf(shopId.getString("material", "STONE")), shopId.getInt("amount", 1));
+
+                                    menus.closeAll();
+                                    menus.removeBtn(itemsStack);
+                                }
+                            }
+                        }
+
+                        //clicker.sendMessage(Messages.messageWithPrefix("errors.shop.coins", "&eYou need to have &b%cost%&e!").replace("%cost%", shopId.get(ID).getString("effect", "Test")));
+                        return true;
+                    }
+                    return false;
+                }
+            });
         }
     }
 
@@ -83,66 +99,29 @@ public class Shop implements Listener {
         return shopItem;
     }
 
-
-    public ClickMenu getPlayerMenu(){
+    public ClickMenu getPlayerShop(){
         int Menu_index = 0;
         int Menu_row = 0;
 
         ClickMenu shop = new ClickMenu().setName(title);
         shop.setSize(PGUtils.instance.getConfig().getInt("row", 6));
 
-        for (ConfigurationSection _item : items){
+        for (ConfigurationSection _item : items) {
             String ID = GeneralUtils.generateUniqueID();
-            if (!_item.getBoolean("onlyTNT", false)){
-                ItemStack item = new ItemStack(Material.valueOf(_item.getString("material",  "STONE")), _item.getInt("amount",  1));
-                shop.addButton(shop.getRow(Menu_row), Menu_index, item, _item.getString("name",  "Item 1"), ID, _item.getStringList("lore").toArray(new String[0]));
 
-                playerShop.put(ID, _item);
+            ItemStack item = new ItemStack(Material.valueOf(_item.getString("material", "STONE")), _item.getInt("amount", 1));
+            shop.addButton(shop.getRow(Menu_row), Menu_index, item, _item.getString("name", "Item 1"), ID, _item.getStringList("lore").toArray(new String[0]));
 
-                if(Menu_index == 8) {
-                    Menu_row++;
-                    Menu_index = 0;
-                } else {
-                    Menu_index++;
-                }
+            playerShop.put(ID, _item);
+
+            if (Menu_index == 8) {
+                Menu_row++;
+                Menu_index = 0;
             } else {
-                ItemStack item = new ItemStack(Material.valueOf(_item.getString("material",  "STONE")), _item.getInt("amount",  0));
-                shop.addButton(shop.getRow(Menu_row), Menu_index, item, _item.getString("name",  "Item 1"), ID, _item.getStringList("lore").toArray(new String[0]));
-
-                tntShop.put(ID, _item);
-                if(Menu_index == 8) {
-                    Menu_row++;
-                    Menu_index = 0;
-                } else {
-                    Menu_index++;
-                }
+                Menu_index++;
             }
         }
-
-        Click(shop);
         return shop;
     }
-
-    private void Click(ClickMenu shop){
-        shop.onClick(new ClickMenu.onClick() {
-            @Override
-            public boolean click(Player clicker, ClickMenu menu, ClickMenu.Row row, int slot, ItemStack item) {
-                return false;
-            }
-
-            @Override
-            public boolean click(Player clicker, ClickMenu menu, ClickMenu.Row row, int slot, String ID) {
-                if(playerShop.containsKey(ID) && tntShop.containsKey(ID)){
-                    if(!effects.applyEffect(ID, clicker)) {
-                        clicker.sendMessage(Messages.messageWithPrefix("errors.shop.coins", "&eYou need to have &b%cost%&e!").replace("%cost%", String.valueOf(0)));
-                        return false;
-                    }
-                    return true;
-                }
-                return false;
-            }
-        });
-    }
-
 
 }

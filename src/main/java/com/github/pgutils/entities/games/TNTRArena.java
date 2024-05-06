@@ -83,8 +83,10 @@ public class TNTRArena extends PlaySpace {
             PlayerManager.disableMove(players.get(i));
             PlayerManager.disablePVP(players.get(i));
         }
-        for (int i = 0; i < players.size(); i++) {
-            players.get(i).teleport(spawns.get(i % spawns.size()).getPos());
+        if (!spawns.isEmpty()) {
+            for (int i = 0; i < players.size(); i++) {
+                players.get(i).teleport(spawns.get(i % spawns.size()).getPos());
+            }
         }
         jumps.forEach(jump -> jump.setupForPlayers(players));
     }

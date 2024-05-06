@@ -7,7 +7,6 @@ import com.github.pgutils.entities.PlaySpace;
 import com.github.pgutils.entities.games.TNTRArena;
 import com.github.pgutils.entities.helpfulutils.ClientboundArmorstand;
 import com.github.pgutils.entities.service.LobbyService;
-import com.github.pgutils.entities.service.TNTRServices;
 import com.github.pgutils.enums.LobbyMode;
 import com.github.pgutils.selections.PlayerLobbySelector;
 import com.github.pgutils.selections.PlayerPlaySpaceSelector;
@@ -49,6 +48,32 @@ public class UltimateUtilsX {
     public static boolean joinLobby(Player player, String[] args) {
         if (args.length >= 2) {
             int id = Integer.parseInt(args[1]);
+            Lobby lobby = GeneralUtils.getLobbyByID(id);
+            if (lobby == null) {
+                player.sendMessage(Messages.messageWithPrefix("lobby-missing-message", "&cLobby is not found!"));
+                return true;
+            } else {
+                PlayerChestReward.saveInv(player);
+                lobby.addPlayer(player);
+                return true;
+            }
+        } else {
+            Optional<PlayerLobbySelector> lobbySelector = PGUtils.loader.selectedLobby.stream()
+                    .filter(selector -> selector.player.equals(player))
+                    .findFirst();
+            if (!lobbySelector.isPresent()) {
+                player.sendMessage(Messages.messageWithPrefix("lobby-missing-message", "&cLobby is not found!"));
+                return true;
+            }
+            Lobby lobby = lobbySelector.get().lobby;
+            lobby.addPlayer(player);
+            return true;
+        }
+    }
+
+    public static boolean directJoinLobby(Player player, String[] args) {
+        if (args.length >= 1) {
+            int id = Integer.parseInt(args[0]);
             Lobby lobby = GeneralUtils.getLobbyByID(id);
             if (lobby == null) {
                 player.sendMessage(Messages.messageWithPrefix("lobby-missing-message", "&cLobby is not found!"));

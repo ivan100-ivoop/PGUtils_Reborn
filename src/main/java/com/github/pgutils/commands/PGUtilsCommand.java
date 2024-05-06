@@ -40,50 +40,63 @@ public class PGUtilsCommand implements CommandExecutor, TabCompleter {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+
+        if(!sender.hasPermission("pgutils.usage") && !sender.isOp()){
+            sender.sendMessage(Messages.messageWithPrefix("errors.no-permission", "&4You do not have the necessary permissions to execute this command."));
+            return true;
+        }
+
         if (args.length > 0 && subCommands.containsKey(args[0].toLowerCase())) {
             PGSubCommand subCommand = subCommands.get(args[0].toLowerCase());
 
             if (subCommand.getPermission() == null || sender.hasPermission(subCommand.getPermission())) {
                 command.setDescription(subCommand.getDescription());
                 if (!subCommand.execute(sender, Arrays.copyOfRange(args, 1, args.length))) {
-                    sender.sendMessage(Messages.messageWithPrefix("command-error-message", "&c&lOops &cthere is an error with the command"));
 
                     if (sender instanceof Player) {
                         Player player = (Player) sender;
 
-                        TextComponent main = new TextComponent("Usage: " + subCommand.getUsage() + "");
+                        TextComponent main = new TextComponent(Messages.messageWithPrefix("errors.usage", "Usage: %command%").replace("%command%", subCommand.getUsage()));
                         main.setColor(ChatColor.YELLOW);
                         main.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(subCommand.getUsage()).create()));
-                        main.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/pg " + subCommand.getName() + " "));
+                        main.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/clan help"));
 
                         player.spigot().sendMessage(main);
                     }
                 }
             } else {
-                sender.sendMessage(Messages.messageWithPrefix("command-no-perms-message", "&4You do not have the necessary permissions to execute this command."));
+                sender.sendMessage(Messages.messageWithPrefix("errors.no-permission", "&4You do not have the necessary permissions to execute this command."));
             }
         } else {
-            sender.sendMessage(Messages.messageWithPrefix("invalid-command-message", "&4Invalid command."));
+            sender.sendMessage(Messages.messageWithPrefix("errors.invalid-command", "&4Invalid command."));
         }
 
         return true;
     }
-
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         List<String> completions = new ArrayList<>();
 
+        if(!sender.hasPermission("pgutils.usage") && !sender.isOp()){
+            return  Collections.emptyList();
+        }
+
         if (args.length == 1) {
-            for (String subCommand : subCommands.keySet()) {
-                if (subCommand.toLowerCase().startsWith(args[0].toLowerCase())) {
-                    completions.add(subCommand);
+            for( Map.Entry<String, PGSubCommand> command1 : subCommands.entrySet()){
+                if(command1.getValue().getPermission() != null && sender.hasPermission(command1.getValue().getPermission())){
+                    if (command1.getKey().toLowerCase().startsWith(args[0].toLowerCase())) {
+                        completions.add(command1.getKey());
+                    }
                 }
             }
         } else if (args.length > 1 && subCommands.containsKey(args[0].toLowerCase())) {
             PGSubCommand subCommand = subCommands.get(args[0].toLowerCase());
-            completions.addAll(subCommand.tabComplete(sender, Arrays.copyOfRange(args, 1, args.length)));
+            if (subCommand.getPermission() != null && sender.hasPermission(subCommand.getPermission())) {
+                completions.addAll(subCommand.tabComplete(sender, Arrays.copyOfRange(args, 1, args.length)));
+            }
         }
 
         return completions;
     }
+
 }

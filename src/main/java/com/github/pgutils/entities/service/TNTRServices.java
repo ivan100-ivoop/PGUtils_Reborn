@@ -18,11 +18,11 @@ public class TNTRServices {
             for (TNTRun tntRun: lobbyRepository.streamAllValues().collect(Collectors.toList())){
                 TNTRArena arena = new TNTRArena();
 
+                arena.setUID(tntRun.getKey().toString());
                 arena.setLocation(tntRun.location);
                 arena.setBombRatio(tntRun.bombRatio);
                 arena.setBombTimer(tntRun.bombTimer);
                 arena.setName(tntRun.name);
-                arena.setUID(tntRun.getKey().toString());
 
                 for (TNTRSpawn spawn : tntRun.spawns){
                     arena.addSpawnLocation(spawn);
